@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  app:
+    image: testwork:0.1
+    tty: true
+    build:
+      args:
+        user: www
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /var/www/
+    environment:
+      - COMPOSER_MEMORY_LIMIT=-1
+    volumes:
+      - ./:/var/www
+      - ./config/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - testwork
+  nginx:
+    image: nginx:1.21.4-alpine
+    tty: true
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+    volumes:
+      - ./:/var/www
+      - ./config/nginx:/etc/nginx/conf.d/
+    networks:
+      - testwork
+
+networks:
+  testwork:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
