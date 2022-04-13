@@ -7,6 +7,8 @@ WORKDIR /var/www
 ARG user
 ARG uid
 
+RUN pecl install xdebug
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
@@ -25,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install zip mysqli pdo_mysql mbstring exif pcntl bcmath gd && docker-php-ext-enable mysqli
+RUN docker-php-ext-install zip mysqli pdo_mysql mbstring exif pcntl bcmath gd && docker-php-ext-enable mysqli xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

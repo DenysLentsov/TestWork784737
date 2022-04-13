@@ -2,7 +2,6 @@
 
 In order to deploy and run this project you will need the [Docker](https://docs.docker.com/get-docker/)
 
-
 ## Step 1
 
 Run container
@@ -46,3 +45,9 @@ The app should now be accessible under localhost:8080
 
 ## Step 3
 
+Use Postman collection to test API
+
+## Bonus
+
+As a bonus you get a Docker container with Nginx and PHP 8.1 with configured XDebug 3!
+Important! If you are on Mac, ensure you have created an Host address alias and 10.254.254.254 is aliased to your localhost.

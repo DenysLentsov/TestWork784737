@@ -1,9 +1,8 @@
 <?php
-use App\Models\Tutor;
-use App\Models\Student;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TutorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,14 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/students', function(Request $request){
-    return Student::find($request->id)->tutors;
-});
-
-Route::get('/tutors', function(Request $request){
-    return Tutor::find($request->id)->students;
-});
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:api')->get('/tutors', [TutorController::class, 'tutors']);
+Route::middleware('auth:api')->get('/studentsbytutor', [TutorController::class, 'students']);

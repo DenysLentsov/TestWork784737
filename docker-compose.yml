@@ -14,7 +14,7 @@ services:
       - COMPOSER_MEMORY_LIMIT=-1
     volumes:
       - ./:/var/www
-      - ./config/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./config/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     networks:
       - testwork
   nginx:

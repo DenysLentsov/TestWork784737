@@ -16,14 +16,6 @@ return new class extends Migration
         Schema::create('student_tutor', function (Blueprint $table) {
             $table->integer('student_id')->unsigned();
             $table->integer('tutor_id')->unsigned();
-            $table->foreign('student_id')
-                ->references('id')
-                ->on('students')
-                ->onDelete('cascade');
-            $table->foreign('tutor_id')
-                ->references('id')
-                ->on('tutors')
-                ->onDelete('cascade');
         });
     }
 
