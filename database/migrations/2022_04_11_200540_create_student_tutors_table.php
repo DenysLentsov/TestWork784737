@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('student_tutor', function (Blueprint $table) {
             $table->integer('student_id')->unsigned();
             $table->integer('tutor_id')->unsigned();
+            $table->integer('active')->unsigned();
         });
     }
 

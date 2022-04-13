@@ -11,6 +11,6 @@ class Student extends Model
 
     public function tutors()
     {
-        return $this->belongsToMany(Tutor::class);
+        return $this->belongsToMany(Tutor::class)->withPivot('active');
     }
 }

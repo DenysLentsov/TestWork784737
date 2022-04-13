@@ -45,7 +45,7 @@ The app should now be accessible under localhost:8080
 
 ## Step 3
 
-Use Postman collection to test API
+Use this [Postman collection](https://www.getpostman.com/collections/a70141c0dc056e8f08b0) to test API
 
 ## Bonus
 

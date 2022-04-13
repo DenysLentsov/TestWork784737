@@ -13,6 +13,9 @@ class TutorRepository implements TutorRepositoryInterface
         return Tutor::all();
     }
 
+    /**
+     * Example of using sort and search parameters
+     */
     public function tutors($request){
         $collection = $request->collect();
         if($collection->has('name','orderby')){
@@ -34,13 +37,20 @@ class TutorRepository implements TutorRepositoryInterface
         }
     }
 
+    /**
+     * Example of using pivot parameter for search in related model
+     */
     public function getStudentsByTutor($request)
     {
-        if(!empty($request->query('name'))){
+        if(!empty($request->input('name'))){
             $students = array();
-            $tutors = Tutor::where('name', $request->query('name'))->get();
+            $tutors = Tutor::where('name', $request->input('name'))->get();
             foreach($tutors as $tutor){
-                $students[] = $tutor->students;
+                foreach($tutor->students as $student){
+                    if($request->collect()->has('active') && $student->pivot->active == $request->active){
+                        $students[] = $student;
+                    }
+                }
             }
         }else{
             $students = 'Please enter the tutor Name';
